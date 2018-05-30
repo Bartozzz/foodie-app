@@ -6,6 +6,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "1.1.0",
+    "@material-ui/icons": "1.1.0",
     "devtron": "^1.4.0",
     "electron-debug": "^2.0.0",
     "history": "^4.7.2",
