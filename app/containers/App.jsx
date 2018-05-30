@@ -4,6 +4,7 @@ import {withStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import SearchInput from "../components/SearchInput";
 
 type Props = {
   classes: Object,
@@ -36,6 +37,8 @@ class App extends React.Component<Props> {
             </Typography>
 
             <div className={classes.grow} />
+
+            <SearchInput />
           </Toolbar>
         </AppBar>
 

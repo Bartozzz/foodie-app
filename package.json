@@ -8,7 +8,9 @@
   "dependencies": {
     "@material-ui/core": "1.1.0",
     "@material-ui/icons": "1.1.0",
+    "classnames": "2.2.5",
     "devtron": "^1.4.0",
+    "downshift": "1.31.15",
     "electron-debug": "^2.0.0",
     "history": "^4.7.2",
     "react": "^16.4.0",
@@ -18,6 +20,7 @@
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.6",
+    "recompose": "0.27.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0"
   },
