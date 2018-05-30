@@ -1,7 +1,7 @@
 {
   "main": "./main.prod.js",
-  "name": "Boilerplate",
-  "productName": "…",
+  "name": "Foodie",
+  "productName": "Foodie",
   "description": "…",
   "license": "MIT",
   "version": "1.0.0",

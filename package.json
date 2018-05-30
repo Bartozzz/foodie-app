@@ -1,6 +1,6 @@
 {
-  "name": "Boilerplate",
-  "productName": "…",
+  "name": "Foodie",
+  "productName": "Foodie",
   "description": "…",
   "version": "0.0.1",
   "license": "MIT",
@@ -52,8 +52,8 @@
     ]
   },
   "build": {
-    "productName": "…",
-    "appId": "…",
+    "productName": "Foodie",
+    "appId": "me.laniewski.foodie",
     "files": [
       "dist/",
       "node_modules/",
