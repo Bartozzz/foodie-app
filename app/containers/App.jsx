@@ -4,7 +4,7 @@ import {withStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import SearchInput from "../components/SearchInput";
+import Search from "../components/Search";
 
 type Props = {
   classes: Object,
@@ -14,6 +14,7 @@ type Props = {
 const styles = theme => ({
   root: {
     display: "flex",
+    flexDirection: "column",
     alignItems: "stretch",
     width: "100%"
   },
@@ -38,7 +39,7 @@ class App extends React.Component<Props> {
 
             <div className={classes.grow} />
 
-            <SearchInput />
+            <Search />
           </Toolbar>
         </AppBar>
 
