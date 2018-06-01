@@ -15,11 +15,20 @@ const styles = theme => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "stretch",
-    width: "100%"
+
+    width: "100vw",
+    height: "100vh"
   },
+
   grow: {
-    flex: "1 1 auto"
+    flex: "1"
+  },
+
+  content: {
+    flex: "1",
+
+    overflowX: "hidden",
+    overflowY: "auto"
   }
 });
 
@@ -43,7 +52,7 @@ class App extends React.Component<Props> {
           </Toolbar>
         </AppBar>
 
-        {this.props.children}
+        <div className={classes.content}>{this.props.children}</div>
       </div>
     );
   }
