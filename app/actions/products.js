@@ -21,10 +21,10 @@ export const productsFetchFail = (brand, error) => ({
   error
 });
 
-export const fetchProducts = brand => dispatch => {
+export const fetchProducts = (brand, page = 1) => dispatch => {
   dispatch(productsFetchRequest(brand));
 
-  return fetch(`https://world.openfoodfacts.org/brand/${brand}.json`)
+  return fetch(`https://world.openfoodfacts.org/brand/${brand}/${page}.json`)
     .then(response => response.json())
     .then(json => dispatch(productsFetchSuccess(brand, json)))
     .catch(err => dispatch(productsFetchFail(brand, err)));

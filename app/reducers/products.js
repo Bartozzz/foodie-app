@@ -6,6 +6,7 @@ import {
 
 const initialState = {
   count: 0,
+  page: 1,
   list: [],
   brand: null,
   fetching: false
@@ -21,6 +22,7 @@ export const productsReducer = (state = initialState, action) => {
         fetching: false,
         brand: action.brand,
         count: action.data.count,
+        page: action.data.page,
         list: action.data.products
       };
     default:
