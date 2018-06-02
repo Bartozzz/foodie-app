@@ -6,6 +6,8 @@ import lightGreen from "@material-ui/core/colors/lightGreen";
 import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
 import App from "./containers/App";
 import Home from "./containers/Home";
+import Product from "./containers/Product";
+import Products from "./containers/Products";
 
 const theme = createMuiTheme({
   palette: {

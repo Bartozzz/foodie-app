@@ -13,7 +13,8 @@ import {fetchProducts} from "../../actions/products";
 import type {Dispatch} from "redux";
 
 type Props = {
-  search: string => void
+  search: string => void,
+  onSearch: Function
 };
 
 type State = {
@@ -35,6 +36,7 @@ class Search extends React.Component<Props, State> {
 
   handleSearch = () => {
     this.props.search(this.state.brand);
+    this.props.onSearch();
   };
 
   handleChange = field => (event: Object) => {
@@ -60,11 +62,12 @@ class Search extends React.Component<Props, State> {
   };
 
   render() {
-    const {product, country} = this.state;
+    const {brand, product, country} = this.state;
 
     return (
       <React.Fragment>
         <SearchInput
+          value={brand}
           searchRef={this.anchor}
           onSearch={this.handleSearch}
           onChange={this.handleChange("brand")}

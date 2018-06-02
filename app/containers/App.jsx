@@ -1,5 +1,7 @@
 // @flow
 import * as React from "react";
+import {compose} from "recompose";
+import {withRouter, Link} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -8,32 +10,14 @@ import Search from "../components/Search";
 
 type Props = {
   classes: Object,
-  children: React.Node
+  children: React.Node,
+  history: Object
 };
 
-const styles = (theme: Object) => ({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-
-    width: "100vw",
-    height: "100vh"
-  },
-
-  grow: {
-    flex: "1"
-  },
-
-  content: {
-    flex: "1",
-
-    overflowX: "hidden",
-    overflowY: "auto"
-  }
-});
-
 class App extends React.Component<Props> {
-  props: Props;
+  navigate = location => () => {
+    this.props.history.push(location);
+  };
 
   render() {
     const {classes} = this.props;
@@ -42,13 +26,19 @@ class App extends React.Component<Props> {
       <div className={classes.root}>
         <AppBar position="static" color="primary">
           <Toolbar>
-            <Typography variant="title" color="inherit">
+            <Typography
+              variant="title"
+              color="inherit"
+              className={classes.title}
+              component={Link}
+              to="/"
+            >
               Foodie
             </Typography>
 
             <div className={classes.grow} />
 
-            <Search />
+            <Search onSearch={this.navigate("/products")} />
           </Toolbar>
         </AppBar>
 
@@ -58,4 +48,30 @@ class App extends React.Component<Props> {
   }
 }
 
-export default withStyles(styles)(App);
+export default compose(
+  withRouter,
+  withStyles((theme: Object) => ({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+
+      width: "100vw",
+      height: "100vh"
+    },
+
+    grow: {
+      flex: "1"
+    },
+
+    title: {
+      textDecoration: "none"
+    },
+
+    content: {
+      flex: "1",
+
+      overflowX: "hidden",
+      overflowY: "auto"
+    }
+  }))
+)(App);
