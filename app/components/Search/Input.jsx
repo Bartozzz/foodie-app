@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -7,7 +8,16 @@ import {withStyles} from "@material-ui/core/styles";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 
-const styles = theme => ({
+type Props = {
+  value: string,
+  classes: Object,
+  searchRef: Object,
+  onExpand: Function,
+  onSearch: Function,
+  onChange: Function
+};
+
+const styles = (theme: Object) => ({
   root: {
     fontFamily: theme.typography.fontFamily,
     position: "relative",
@@ -78,8 +88,8 @@ const styles = theme => ({
   }
 });
 
-class SearchInput extends React.Component {
-  onKeyPress = event => {
+class SearchInput extends React.Component<Props> {
+  onKeyPress = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       this.props.onSearch();
     }

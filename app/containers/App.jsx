@@ -11,7 +11,7 @@ type Props = {
   children: React.Node
 };
 
-const styles = theme => ({
+const styles = (theme: Object) => ({
   root: {
     display: "flex",
     flexDirection: "column",

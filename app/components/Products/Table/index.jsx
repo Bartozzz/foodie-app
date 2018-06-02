@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
@@ -14,8 +15,19 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import {fetchProducts} from "../../../actions/products";
+import type {Dispatch} from "redux";
+import type {Product} from "../../../constants/flow/openFoodFacts";
 
-const styles = theme => ({
+type Props = {
+  classes: Object,
+  page: number,
+  count: number,
+  brand: string,
+  products: Array<Product>,
+  changePage: Function
+};
+
+const styles = (theme: Object) => ({
   root: {
     padding: theme.spacing.unit * 2
   },
@@ -30,7 +42,7 @@ const styles = theme => ({
   }
 });
 
-class ProductTable extends React.Component {
+class ProductTable extends React.Component<Props> {
   handleChangePage = (event, page) => {
     const {changePage, brand} = this.props;
 
@@ -114,14 +126,14 @@ class ProductTable extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: Object) => ({
   products: state.products.list,
   brand: state.products.brand,
   count: state.products.count,
   page: state.products.page
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   changePage: (brand, page) => dispatch(fetchProducts(brand, page))
 });
 

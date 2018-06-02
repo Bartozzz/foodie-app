@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
@@ -10,7 +11,16 @@ import {compose} from "recompose";
 import countryLabels from "../../constants/countries";
 import {fetchProducts} from "../../actions/products";
 
-const styles = theme => ({
+type Props = {
+  anchor: Object,
+  classes: Object,
+  isOpen: boolean,
+  onClose: Function,
+  onSearch: Function,
+  children: React.Node
+};
+
+const styles = (theme: Object) => ({
   buttons: {
     display: "flex",
     alignItems: "end",
@@ -45,7 +55,7 @@ const styles = theme => ({
   }
 });
 
-class SearchPopover extends React.Component {
+class SearchPopover extends React.Component<Props> {
   render() {
     const {isOpen, onClose, onSearch, anchor, classes} = this.props;
 

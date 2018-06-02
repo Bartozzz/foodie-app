@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import Downshift from "downshift";
 import Paper from "@material-ui/core/Paper";
@@ -5,40 +6,57 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import {withStyles} from "@material-ui/core/styles";
 
-const filter = (array, search, count = 10) =>
-  array.filter(item => {
-    const value = search.toLowerCase();
-    const label = item.label.toLowerCase();
+type Suggestion = {
+  label: string,
+  value: string
+};
+
+function filter(
+  array: Array<Suggestion>,
+  search: string,
+  count: number = 10
+): * {
+  return array.filter((item: Suggestion) => {
+    const value: string = search.toLowerCase();
+    const label: string = item.label.toLowerCase();
 
     return (!value || label.includes(value)) && count-- > 0;
   });
+}
 
 /**
  * Renders a simple text field with internal props from downshift library.
  *
- * @param        {Object}  props
- * @param        {Object}  rest
+ * @param       {Object}  props
+ * @param       {Object}  props.props
+ * @param       {Object}  props.rest
  * @constructor
  */
-function DownshiftInput({props, ...rest}) {
+function DownshiftInput({props, ...rest}: Object): * {
   return <TextField InputProps={props} {...rest} />;
 }
 
 /**
  * Renders a single suggestion.
  *
- * @param        {Object}  props
- * @param        {Object}  suggestion
- * @param        {number}  index
- * @param        {number}  highlightedIndex
+ * @param       {Object}      props
+ * @param       {Object}      props.props
+ * @param       {Suggestion}  props.suggestion
+ * @param       {?number}     props.index
+ * @param       {?number}     props.highlightedIndex
  * @constructor
  */
-function DownshiftSuggestion({props, suggestion, index, highlightedIndex}) {
-  const isSelected = highlightedIndex === index;
+function DownshiftSuggestion(props: {
+  props: Object,
+  suggestion: Suggestion,
+  index: ?number,
+  highlightedIndex: ?number
+}): * {
+  const isSelected = props.highlightedIndex === props.index;
 
   return (
-    <MenuItem {...props} selected={isSelected}>
-      {suggestion.label}
+    <MenuItem {...props.props} selected={isSelected}>
+      {props.suggestion.label}
     </MenuItem>
   );
 }
@@ -46,18 +64,23 @@ function DownshiftSuggestion({props, suggestion, index, highlightedIndex}) {
 /**
  * Renders a text field with suggestions.
  *
- * @param        {Object}   props
- * @param        {string}   props.value
- * @param        {Array}    props.values
- * @param        {Function} props.onChange
+ * @param       {Object}    props
+ * @param       {Object}    props.classes
+ * @param       {string}    props.value
+ * @param       {Array}     props.values
+ * @param       {Function}  props.onChange
  * @constructor
  */
-function DownshiftAutocomplete(props) {
+function DownshiftAutocomplete(props: {
+  classes: Object,
+  value: string,
+  values: Array<Suggestion>,
+  onChange: Object => void
+}): * {
   const {classes, value, values, onChange, ...rest} = props;
-  const suggestions = values || [];
 
-  const imitateEvent = value => ({target: {value}});
-  const handleChange = value => onChange(imitateEvent(value));
+  const imitateEvent: * = (value: string) => ({target: {value}});
+  const handleChange: * = (value: string) => onChange(imitateEvent(value));
 
   return (
     <Downshift onInputValueChange={handleChange}>
@@ -73,7 +96,7 @@ function DownshiftAutocomplete(props) {
 
           {isOpen && (
             <Paper className={classes.paper} component="ul">
-              {filter(suggestions, inputValue).map((suggestion, index) => (
+              {filter(values, inputValue).map((suggestion, index) => (
                 <DownshiftSuggestion
                   key={index}
                   index={index}
@@ -90,7 +113,7 @@ function DownshiftAutocomplete(props) {
   );
 }
 
-export default withStyles(theme => ({
+export default withStyles((theme: Object) => ({
   container: {
     width: "100%"
   },

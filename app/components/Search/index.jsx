@@ -1,3 +1,4 @@
+// @flow
 import * as React from "react";
 import {connect} from "react-redux";
 import List from "@material-ui/core/List";
@@ -9,8 +10,20 @@ import Autocomplete from "../Autocomplete";
 import SearchPopover from "./Popover";
 import countries from "../../constants/countries";
 import {fetchProducts} from "../../actions/products";
+import type {Dispatch} from "redux";
 
-class Search extends React.Component {
+type Props = {
+  search: string => void
+};
+
+type State = {
+  isPopoverOpen: boolean,
+  brand: string,
+  product: string,
+  country: string
+};
+
+class Search extends React.Component<Props, State> {
   anchor = React.createRef();
 
   state = {
@@ -21,13 +34,10 @@ class Search extends React.Component {
   };
 
   handleSearch = () => {
-    // dispatch search
-    console.log(this.state);
-
     this.props.search(this.state.brand);
   };
 
-  handleChange = field => event => {
+  handleChange = field => (event: Object) => {
     // NOTE: We cannot prevent default behaviour here:
     // event.preventDefault();
     // event.stopPropagation();
@@ -37,13 +47,13 @@ class Search extends React.Component {
     });
   };
 
-  handlePopoverOpen = event => {
+  handlePopoverOpen = () => {
     this.setState({
       isPopoverOpen: true
     });
   };
 
-  handlePopoverClose = event => {
+  handlePopoverClose = () => {
     this.setState({
       isPopoverOpen: false
     });
@@ -95,12 +105,12 @@ class Search extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: Object) => ({
   // …
 });
 
-const mapDispatchToProps = dispatch => ({
-  search: brand => dispatch(fetchProducts(brand))
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  search: (brand: string) => dispatch(fetchProducts(brand))
 });
 
 export default connect(
