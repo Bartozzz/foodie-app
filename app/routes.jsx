@@ -4,6 +4,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import amber from "@material-ui/core/colors/amber";
 import lightGreen from "@material-ui/core/colors/lightGreen";
 import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
+import ErrorBoundary from "./containers/Error";
 import App from "./containers/App";
 import Home from "./containers/Home";
 import Product from "./containers/Product";
@@ -21,9 +22,13 @@ export default () => (
     <CssBaseline />
 
     <App>
-      <Switch>
-        <Route path="/" exact component={Home} />
-      </Switch>
+      <ErrorBoundary>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/products" component={Products} />
+          <Route path="/product/:id" component={Product} />
+        </Switch>
+      </ErrorBoundary>
     </App>
   </MuiThemeProvider>
 );
