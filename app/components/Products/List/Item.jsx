@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import type {Product} from "../../../constants/flow/OpenFoodFactsProduct";
+import type {Product} from "../../../types/off/Product";
 
 const ProductItem = ({product_name}: Product) => (
   <li>

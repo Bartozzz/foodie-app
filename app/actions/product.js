@@ -1,5 +1,5 @@
 // @flow
-import type {ProductResp} from "../constants/flow/OpenFoodFactsResponse";
+import type {R_Product} from "../types/off/Responses";
 import type {Dispatch} from "../types/Store";
 
 export const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
@@ -11,7 +11,7 @@ export const productFetchRequest = (id: number) => ({
   id
 });
 
-export const productFetchSuccess = (id: number, data: ProductResp) => ({
+export const productFetchSuccess = (id: number, data: R_Product) => ({
   type: PRODUCT_FETCH_SUCCESS,
   id,
   data
@@ -28,6 +28,6 @@ export const fetchProduct = (id: number) => (dispatch: Dispatch) => {
 
   return fetch(`https://world.openfoodfacts.org/api/v0/product/${id}.json`)
     .then(response => response.json())
-    .then((json: ProductResp) => dispatch(productFetchSuccess(id, json)))
+    .then((json: R_Product) => dispatch(productFetchSuccess(id, json)))
     .catch((error: Error) => dispatch(productFetchFail(id, error)));
 };

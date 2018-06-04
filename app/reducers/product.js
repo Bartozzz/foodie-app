@@ -1,5 +1,5 @@
 // @flow
-import type {Product} from "../constants/flow/openFoodFacts";
+import type {Product} from "../types/off/Product";
 import type {Action} from "../types/Action";
 
 import {

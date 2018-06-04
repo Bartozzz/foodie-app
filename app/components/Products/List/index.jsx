@@ -2,7 +2,7 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import ProductItem from "./Item";
-import type {Product} from "../../../constants/flow/OpenFoodFactsProduct";
+import type {Product} from "../../../types/off/Product";
 import type {Dispatch} from "../../../types/Store";
 import type {State} from "../../../types/State";
 

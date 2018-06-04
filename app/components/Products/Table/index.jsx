@@ -17,7 +17,7 @@ import Paper from "@material-ui/core/Paper";
 import {fetchProducts} from "../../../actions/products";
 import type {Dispatch} from "../../../types/Store";
 import type {State} from "../../../types/State";
-import type {Product} from "../../../constants/flow/openFoodFacts";
+import type {Product} from "../../../types/off/Product";
 
 type ComponentProps = {
   classes: Object,
