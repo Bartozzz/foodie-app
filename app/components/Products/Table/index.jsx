@@ -31,7 +31,11 @@ type ComponentProps = {
 
 const styles = (theme: Object) => ({
   root: {
-    padding: theme.spacing.unit * 2
+    margin: "0 auto",
+    padding: theme.spacing.unit * 2,
+
+    width: "100%",
+    maxWidth: 1000
   },
 
   small: {

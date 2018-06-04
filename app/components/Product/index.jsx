@@ -123,12 +123,12 @@ class Product extends React.Component<ComponentProps> {
         </Grid>
 
         <Grid item xs={6}>
-          <Paper style={{height: "100%"}}>
+          <Paper className={classes.ingredients}>
             <Typography variant="headline" component="h2">
               Ingredients
             </Typography>
 
-            <Typography variant="headline">
+            <Typography variant="subheading">
               {product.ingredients.map(i => i.text).join(", ")}
             </Typography>
           </Paper>
@@ -351,6 +351,10 @@ export default compose(
 
       margin: "0 auto",
       padding: theme.spacing.unit
+    },
+
+    ingredients: {
+      padding: theme.spacing.unit * 2
     },
 
     th: {

@@ -17,7 +17,7 @@ class HomePage extends React.Component<ComponentProps> {
         <div className={classes.container}>
           <img src={DietImage} className={classes.image} />
 
-          <Typography align="center" color="textSecondary" variant="subheading">
+          <Typography color="textSecondary" variant="subheading">
             Start searching food by using the search bar at the top.
           </Typography>
         </div>
@@ -38,7 +38,9 @@ export default withStyles((theme: Object) => ({
 
   container: {
     width: 250,
-    height: 300
+    height: 320,
+
+    textAlign: "center"
   },
 
   image: {
