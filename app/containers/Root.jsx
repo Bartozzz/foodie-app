@@ -4,12 +4,12 @@ import {Provider} from "react-redux";
 import {ConnectedRouter} from "react-router-redux";
 import Routes from "../routes";
 
-type Props = {
-  store: {},
-  history: {}
+type ComponentProps = {
+  store: Object,
+  history: Object
 };
 
-class Root extends React.Component<Props> {
+class Root extends React.Component<ComponentProps> {
   render() {
     return (
       <Provider store={this.props.store}>

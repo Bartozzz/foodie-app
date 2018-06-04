@@ -4,11 +4,11 @@ import {withStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import DietImage from "../../images/diet.svg";
 
-type Props = {
+type ComponentProps = {
   classes: Object
 };
 
-class HomePage extends React.Component<Props> {
+class HomePage extends React.Component<ComponentProps> {
   render() {
     const {classes} = this.props;
 

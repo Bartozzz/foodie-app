@@ -1,8 +1,16 @@
+// @flow
 import * as React from "react";
 import {connect} from "react-redux";
 import ProductItem from "./Item";
+import type {Product} from "../../../constants/flow/OpenFoodFactsProduct";
+import type {Dispatch} from "../../../types/Store";
+import type {State} from "../../../types/State";
 
-class ProductGrid extends React.Component {
+type ComponentProps = {
+  products: Array<Product>
+};
+
+class ProductGrid extends React.Component<ComponentProps> {
   render() {
     const {products} = this.props;
 
@@ -16,11 +24,11 @@ class ProductGrid extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: State) => ({
   products: state.products.list
 });
 
-const mapDispatchToProps = disptach => ({
+const mapDispatchToProps = (disptach: Dispatch) => ({
   // …
 });
 

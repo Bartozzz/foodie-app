@@ -4,10 +4,11 @@ import {routerReducer as router} from "react-router-redux";
 import {productReducer as product} from "./product";
 import {productsReducer as products} from "./products";
 
-const rootReducer = combineReducers({
+const reducers = {
   router,
   product,
   products
-});
+};
 
-export default rootReducer;
+export type Reducers = typeof reducers;
+export default combineReducers(reducers);

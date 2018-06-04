@@ -13,14 +13,16 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
+import type {Dispatch} from "../../types/Store";
+import type {State} from "../../types/State";
 
-type Props = {
+type ComponentProps = {
   id: number,
   classes: Object,
   product: Object
 };
 
-class Product extends React.Component<Props> {
+class Product extends React.Component<ComponentProps> {
   render() {
     const {product, classes, id} = this.props;
 
@@ -292,7 +294,7 @@ class Product extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
+const mapStateToProps = (state: State) => ({
   product: state.product.data
 });
 

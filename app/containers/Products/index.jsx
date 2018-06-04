@@ -5,14 +5,16 @@ import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 import Products from "../../components/Products";
 import {productFetchSuccess} from "../../actions/product";
+import type {Dispatch} from "../../types/Store";
+import type {State} from "../../types/State";
 
-type Props = {
+type ComponentProps = {
   history: Object,
   products: Object,
   fakeFetchProduct: Function
 };
 
-class ProductsPage extends React.Component<Props> {
+class ProductsPage extends React.Component<ComponentProps> {
   onProductSelect = (id: number) => (
     event: SyntheticMouseEvent<HTMLButtonElement>
   ) => {
@@ -30,12 +32,20 @@ class ProductsPage extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
+const mapStateToProps = (state: State) => ({
   products: state.products.list
 });
 
 const mapDispatchToProps = (disptach: Dispatch) => ({
-  fakeFetchProduct: (id, data) => disptach(productFetchSuccess(id, data))
+  fakeFetchProduct: (id, product) =>
+    disptach(
+      productFetchSuccess(id, {
+        code: product.code,
+        product: product,
+        status: 1,
+        status_verbose: "product found"
+      })
+    )
 });
 
 export default compose(

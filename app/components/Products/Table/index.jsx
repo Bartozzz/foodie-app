@@ -15,10 +15,11 @@ import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
 import {fetchProducts} from "../../../actions/products";
-import type {Dispatch} from "redux";
+import type {Dispatch} from "../../../types/Store";
+import type {State} from "../../../types/State";
 import type {Product} from "../../../constants/flow/openFoodFacts";
 
-type Props = {
+type ComponentProps = {
   classes: Object,
   page: number,
   count: number,
@@ -43,7 +44,7 @@ const styles = (theme: Object) => ({
   }
 });
 
-class ProductTable extends React.Component<Props> {
+class ProductTable extends React.Component<ComponentProps> {
   handleChangePage = (event, page) => {
     const {changePage, brand} = this.props;
 
@@ -127,7 +128,7 @@ class ProductTable extends React.Component<Props> {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
+const mapStateToProps = (state: State) => ({
   products: state.products.list,
   brand: state.products.brand,
   count: state.products.count,

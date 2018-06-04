@@ -1,9 +1,6 @@
 // @flow
-import type {
-  ProductState,
-  ProductAction,
-  ProductDispatcher
-} from "../reducers/product";
+import type {ProductResp} from "../constants/flow/OpenFoodFactsResponse";
+import type {Dispatch} from "../types/Store";
 
 export const PRODUCT_FETCH_REQUEST = "PRODUCT_FETCH_REQUEST";
 export const PRODUCT_FETCH_SUCCESS = "PRODUCT_FETCH_SUCCESS";
@@ -14,13 +11,11 @@ export const productFetchRequest = (id: number) => ({
   id
 });
 
-export const productFetchSuccess = (id: number, data: Object) => {
-  return {
-    type: PRODUCT_FETCH_SUCCESS,
-    id,
-    data
-  };
-};
+export const productFetchSuccess = (id: number, data: ProductResp) => ({
+  type: PRODUCT_FETCH_SUCCESS,
+  id,
+  data
+});
 
 export const productFetchFail = (id: number, error: Error) => ({
   type: PRODUCT_FETCH_FAIL,
@@ -28,11 +23,11 @@ export const productFetchFail = (id: number, error: Error) => ({
   error
 });
 
-export const fetchProduct = (id: number) => (dispatch: ProductDispatcher) => {
+export const fetchProduct = (id: number) => (dispatch: Dispatch) => {
   dispatch(productFetchRequest(id));
 
   return fetch(`https://world.openfoodfacts.org/api/v0/product/${id}.json`)
     .then(response => response.json())
-    .then((json: Object) => dispatch(productFetchSuccess(id, json)))
+    .then((json: ProductResp) => dispatch(productFetchSuccess(id, json)))
     .catch((error: Error) => dispatch(productFetchFail(id, error)));
 };

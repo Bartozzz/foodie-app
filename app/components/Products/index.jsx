@@ -4,17 +4,18 @@ import {connect} from "react-redux";
 import ProductGrid from "./Grid";
 import ProductList from "./List";
 import ProductTable from "./Table";
-import type {Dispatch} from "redux";
+import type {Dispatch} from "../../types/Store";
+import type {State} from "../../types/State";
 
-type Props = {
+type ComponentProps = {
   onSelect: Function
 };
 
-type State = {
+type ComponentState = {
   mode: string
 };
 
-class Products extends React.Component<Props, State> {
+class Products extends React.Component<ComponentProps, ComponentState> {
   state = {
     mode: "TABLE"
   };
@@ -33,7 +34,7 @@ class Products extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
+const mapStateToProps = (state: State) => ({
   // …
 });
 

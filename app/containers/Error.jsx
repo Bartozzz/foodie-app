@@ -6,17 +6,17 @@ import {withStyles} from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CrossImage from "../images/cross.svg";
 
-type Props = {
+type ComponentProps = {
   children: React.Node,
   classes: Object,
   history: Object
 };
 
-type State = {
+type ComponentState = {
   hasError: boolean
 };
 
-class ErrorBoundary extends React.Component<Props, State> {
+class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
   unlisten: Function;
 
   state = {

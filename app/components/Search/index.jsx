@@ -10,21 +10,22 @@ import Autocomplete from "../Autocomplete";
 import SearchPopover from "./Popover";
 import countries from "../../constants/countries";
 import {fetchProducts} from "../../actions/products";
-import type {Dispatch} from "redux";
+import type {Dispatch} from "../../types/Store";
+import type {State} from "../../types/State";
 
-type Props = {
+type ComponentProps = {
   search: string => void,
   onSearch: Function
 };
 
-type State = {
+type ComponentState = {
   isPopoverOpen: boolean,
   brand: string,
   product: string,
   country: string
 };
 
-class Search extends React.Component<Props, State> {
+class Search extends React.Component<ComponentProps, ComponentState> {
   anchor = React.createRef();
 
   state = {
@@ -108,7 +109,7 @@ class Search extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = (state: Object) => ({
+const mapStateToProps = (state: State) => ({
   // …
 });
 

@@ -8,19 +8,23 @@ import {withStyles} from "@material-ui/core/styles";
 
 type Suggestion = {
   label: string,
-  value: string
+  value?: string | number
 };
 
-function filter(
-  array: Array<Suggestion>,
-  search: string,
-  count: number = 10
-): * {
+/**
+ * Filters n first suggestions matching the search criterium.
+ *
+ * @param   {Array<Suggestion>} array
+ * @param   {string}            search
+ * @param   {number}            count
+ * @return  {Array<Suggestion>}
+ */
+function filter(array: Array<Suggestion>, search: string, n: number = 10): * {
   return array.filter((item: Suggestion) => {
     const value: string = search.toLowerCase();
     const label: string = item.label.toLowerCase();
 
-    return (!value || label.includes(value)) && count-- > 0;
+    return (!value || label.includes(value)) && n-- > 0;
   });
 }
 

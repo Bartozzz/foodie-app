@@ -8,13 +8,13 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Search from "../components/Search";
 
-type Props = {
+type ComponentProps = {
   classes: Object,
   children: React.Node,
   history: Object
 };
 
-class App extends React.Component<Props> {
+class App extends React.Component<ComponentProps> {
   navigate = location => () => {
     this.props.history.push(location);
   };

@@ -1,11 +1,12 @@
 // @flow
+import type {Product} from "../constants/flow/openFoodFacts";
+import type {Action} from "../types/Action";
+
 import {
   PRODUCTS_FETCH_REQUEST,
   PRODUCTS_FETCH_SUCCESS,
   PRODUCTS_FETCH_FAIL
 } from "../actions/products";
-
-import type {Response, Product} from "../constants/flow/openFoodFacts";
 
 export type ProductsState = {
   +count: number,
@@ -14,15 +15,6 @@ export type ProductsState = {
   +brand: string,
   +fetching: boolean
 };
-
-export type ProductsAction = {
-  +type: string,
-  +brand?: string,
-  +data?: Response,
-  +error?: Error
-};
-
-export type ProductsDispatcher = (action: ProductsAction) => void;
 
 const initialState: ProductsState = {
   count: 0,
@@ -34,23 +26,20 @@ const initialState: ProductsState = {
 
 export const productsReducer = (
   state: ProductsState = initialState,
-  action: ProductsAction
+  action: Action
 ): ProductsState => {
   switch (action.type) {
     case PRODUCTS_FETCH_REQUEST:
       return {...state, fetching: true};
 
     case PRODUCTS_FETCH_SUCCESS:
-      // $FlowFixMe
-      const data: Response = action.data;
-
       return {
         ...state,
         fetching: false,
         brand: action.brand,
-        count: data.count,
-        page: Number(data.page),
-        list: data.products
+        count: action.data.count,
+        page: Number(action.data.page),
+        list: action.data.products
       };
 
     default:
