@@ -24,7 +24,8 @@ type Props = {
   count: number,
   brand: string,
   products: Array<Product>,
-  changePage: Function
+  changePage: Function,
+  onSelect: Function
 };
 
 const styles = (theme: Object) => ({
@@ -52,7 +53,7 @@ class ProductTable extends React.Component<Props> {
   };
 
   render() {
-    const {products, page, count, classes} = this.props;
+    const {products, page, count, classes, onSelect} = this.props;
 
     return (
       <div className={classes.root}>
@@ -72,7 +73,7 @@ class ProductTable extends React.Component<Props> {
             </TableHead>
 
             <TableBody>
-              {products.map(product => (
+              {products.map((product, key) => (
                 <TableRow key={product._id} hover>
                   <TableCell padding="none">
                     <Avatar
@@ -105,7 +106,7 @@ class ProductTable extends React.Component<Props> {
                   </TableCell>
 
                   <TableCell padding="checkbox">
-                    <Button>Details</Button>
+                    <Button onClick={onSelect(key)}>Details</Button>
                   </TableCell>
                 </TableRow>
               ))}

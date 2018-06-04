@@ -7,7 +7,7 @@ import ProductTable from "./Table";
 import type {Dispatch} from "redux";
 
 type Props = {
-  // …
+  onSelect: Function
 };
 
 type State = {
@@ -20,13 +20,15 @@ class Products extends React.Component<Props, State> {
   };
 
   render() {
+    const {onSelect} = this.props;
+
     switch (this.state.mode) {
       case "GRID":
-        return <ProductGrid />;
+        return <ProductGrid onSelect={onSelect} />;
       case "LIST":
-        return <ProductList />;
+        return <ProductList onSelect={onSelect} />;
       default:
-        return <ProductTable />;
+        return <ProductTable onSelect={onSelect} />;
     }
   }
 }
