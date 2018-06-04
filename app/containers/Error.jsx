@@ -17,18 +17,24 @@ type State = {
 };
 
 class ErrorBoundary extends React.Component<Props, State> {
+  unlisten: Function;
+
   state = {
     hasError: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     const {history} = this.props;
 
-    history.listen((location, action) => {
+    this.unlisten = history.listen((location, action) => {
       this.setState({
         hasError: false
       });
     });
+  }
+
+  componentWillUnmount() {
+    this.unlisten();
   }
 
   componentDidCatch(error: Error, info: Object) {
