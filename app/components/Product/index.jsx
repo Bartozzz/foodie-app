@@ -21,19 +21,19 @@ class ProductView extends React.Component<ComponentProps> {
 
     return (
       <Grid container spacing={16} className={classes.root}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Gallery product={product} />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Characteristics product={product} />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Ingredients product={product} />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <Nutriments product={product} />
         </Grid>
 

@@ -36,6 +36,8 @@ const Ingredients = ({classes, product}: ComponentsProps) => {
 export default withStyles((theme: Object) => ({
   paper: {
     padding: theme.spacing.unit * 2,
-    height: "100%"
+
+    height: "100%",
+    width: "100%"
   }
 }))(Ingredients);

@@ -109,7 +109,8 @@ const Characteristics = ({classes, product}: ComponentsProps) => {
 
 export default withStyles((theme: Object) => ({
   paper: {
-    height: "100%"
+    height: "100%",
+    width: "100%"
   },
 
   th: {
