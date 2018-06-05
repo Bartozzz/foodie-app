@@ -1,7 +1,5 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
-import {compose} from "recompose";
 import {withStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -13,8 +11,6 @@ import TableFooter from "@material-ui/core/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
-import type {Dispatch} from "../../types/Store";
-import type {State} from "../../types/State";
 
 type ComponentProps = {
   id: number,
@@ -25,8 +21,6 @@ type ComponentProps = {
 class Product extends React.Component<ComponentProps> {
   render() {
     const {product, classes, id} = this.props;
-
-    console.log(product);
 
     return (
       <Grid container spacing={16} className={classes.root}>
@@ -294,83 +288,69 @@ class Product extends React.Component<ComponentProps> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  product: state.product.data
-});
+export default withStyles((theme: Object) => ({
+  root: {
+    margin: "0 auto",
+    padding: theme.spacing.unit * 2,
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  // …
-});
+    width: "100%",
+    maxWidth: 1000
+  },
 
-export default compose(
-  withStyles((theme: Object) => ({
-    root: {
-      margin: "0 auto",
-      padding: theme.spacing.unit * 2,
+  main: {
+    position: "relative",
 
-      width: "100%",
-      maxWidth: 1000
-    },
+    backgroundColor: "black"
+  },
 
-    main: {
-      position: "relative",
+  photo: {
+    display: "block",
 
-      backgroundColor: "black"
-    },
+    padding: 0,
+    margin: "0 auto",
 
-    photo: {
-      display: "block",
+    height: "337px",
+    maxWidth: "100%"
+  },
 
-      padding: 0,
-      margin: "0 auto",
+  name: {
+    position: "absolute",
+    bottom: 0,
 
-      height: "337px",
-      maxWidth: "100%"
-    },
+    width: "100%",
+    height: "60px",
 
-    name: {
-      position: "absolute",
-      bottom: 0,
+    lineHeight: "60px",
+    textAlign: "center",
+    color: "white",
 
-      width: "100%",
-      height: "60px",
+    backgroundImage: "linear-gradient(transparent, black)"
+  },
 
-      lineHeight: "60px",
-      textAlign: "center",
-      color: "white",
+  misc: {
+    padding: theme.spacing.unit
+  },
 
-      backgroundImage: "linear-gradient(transparent, black)"
-    },
+  nutriscore: {
+    display: "block",
 
-    misc: {
-      padding: theme.spacing.unit
-    },
+    margin: "0 auto",
+    padding: theme.spacing.unit
+  },
 
-    nutriscore: {
-      display: "block",
+  ingredients: {
+    padding: theme.spacing.unit * 2
+  },
 
-      margin: "0 auto",
-      padding: theme.spacing.unit
-    },
+  th: {
+    paddingRight: theme.spacing.unit,
+    paddingLeft: theme.spacing.unit * 2,
 
-    ingredients: {
-      padding: theme.spacing.unit * 2
-    },
+    width: "160px",
+    fontWeight: "500"
+  },
 
-    th: {
-      paddingRight: theme.spacing.unit,
-      paddingLeft: theme.spacing.unit * 2,
-
-      width: "160px",
-      fontWeight: "500"
-    },
-
-    td: {
-      paddingLeft: theme.spacing.unit
-    }
-  })),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(Product);
+  td: {
+    paddingLeft: theme.spacing.unit
+  }
+}))(Product);

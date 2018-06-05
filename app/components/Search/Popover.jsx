@@ -2,14 +2,7 @@
 import * as React from "react";
 import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import {withStyles} from "@material-ui/core/styles";
-import {connect} from "react-redux";
-import {compose} from "recompose";
-import countryLabels from "../../constants/countries";
-import {fetchProducts} from "../../actions/products";
 
 type Props = {
   anchor: Object,
@@ -93,4 +86,4 @@ class SearchPopover extends React.Component<Props> {
   }
 }
 
-export default compose(withStyles(styles))(SearchPopover);
+export default withStyles(styles)(SearchPopover);

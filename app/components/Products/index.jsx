@@ -1,13 +1,16 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
 import ProductGrid from "./Grid";
 import ProductList from "./List";
 import ProductTable from "./Table";
-import type {Dispatch} from "../../types/Store";
-import type {State} from "../../types/State";
+import type {Product} from "../../types/off/Product";
 
 type ComponentProps = {
+  products: Array<Product>,
+  brand: string,
+  count: number,
+  page: number,
+  onChangePage: Function,
   onSelect: Function
 };
 
@@ -21,28 +24,15 @@ class Products extends React.Component<ComponentProps, ComponentState> {
   };
 
   render() {
-    const {onSelect} = this.props;
-
     switch (this.state.mode) {
       case "GRID":
-        return <ProductGrid onSelect={onSelect} />;
+        return <ProductGrid {...this.props} />;
       case "LIST":
-        return <ProductList onSelect={onSelect} />;
+        return <ProductList {...this.props} />;
       default:
-        return <ProductTable onSelect={onSelect} />;
+        return <ProductTable {...this.props} />;
     }
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  // …
-});
-
-const mapDispatchToProps = (disptach: Dispatch) => ({
-  // …
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Products);
+export default Products;

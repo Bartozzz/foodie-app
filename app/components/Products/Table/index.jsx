@@ -1,7 +1,5 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
-import {compose} from "recompose";
 import {withStyles} from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,9 +12,6 @@ import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import TablePagination from "@material-ui/core/TablePagination";
 import Paper from "@material-ui/core/Paper";
-import {fetchProducts} from "../../../actions/products";
-import type {Dispatch} from "../../../types/Store";
-import type {State} from "../../../types/State";
 import type {Product} from "../../../types/off/Product";
 
 type ComponentProps = {
@@ -25,7 +20,7 @@ type ComponentProps = {
   count: number,
   brand: string,
   products: Array<Product>,
-  changePage: Function,
+  onChangePage: Function,
   onSelect: Function
 };
 
@@ -49,16 +44,8 @@ const styles = (theme: Object) => ({
 });
 
 class ProductTable extends React.Component<ComponentProps> {
-  handleChangePage = (event, page) => {
-    const {changePage, brand} = this.props;
-
-    // NOTE pages starts from 1 in API
-    // NOTE pages starts from 0 in components
-    changePage(brand, page + 1);
-  };
-
   render() {
-    const {products, page, count, classes, onSelect} = this.props;
+    const {products, page, count, classes, onSelect, onChangePage} = this.props;
 
     return (
       <div className={classes.root}>
@@ -124,7 +111,7 @@ class ProductTable extends React.Component<ComponentProps> {
             page={page - 1}
             rowsPerPage={20}
             rowsPerPageOptions={[20]}
-            onChangePage={this.handleChangePage}
+            onChangePage={onChangePage}
           />
         </Paper>
       </div>
@@ -132,21 +119,4 @@ class ProductTable extends React.Component<ComponentProps> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  products: state.products.list,
-  brand: state.products.brand,
-  count: state.products.count,
-  page: state.products.page
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changePage: (brand, page) => dispatch(fetchProducts(brand, page))
-});
-
-export default compose(
-  withStyles(styles),
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(ProductTable);
+export default withStyles(styles)(ProductTable);

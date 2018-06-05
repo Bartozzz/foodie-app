@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListSubheader from "@material-ui/core/ListSubheader";
@@ -9,12 +8,8 @@ import SearchInput from "./Input";
 import Autocomplete from "../Autocomplete";
 import SearchPopover from "./Popover";
 import countries from "../../constants/countries";
-import {fetchProducts} from "../../actions/products";
-import type {Dispatch} from "../../types/Store";
-import type {State} from "../../types/State";
 
 type ComponentProps = {
-  search: string => void,
   onSearch: Function
 };
 
@@ -36,8 +31,7 @@ class Search extends React.Component<ComponentProps, ComponentState> {
   };
 
   handleSearch = () => {
-    this.props.search(this.state.brand);
-    this.props.onSearch();
+    this.props.onSearch(this.state.brand);
   };
 
   handleChange = field => (event: Object) => {
@@ -109,15 +103,4 @@ class Search extends React.Component<ComponentProps, ComponentState> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  // …
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  search: (brand: string) => dispatch(fetchProducts(brand))
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Search);
+export default Search;

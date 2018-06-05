@@ -1,13 +1,15 @@
 // @flow
 import * as React from "react";
-import {connect} from "react-redux";
 import ProductItem from "./Item";
 import type {Product} from "../../../types/off/Product";
-import type {Dispatch} from "../../../types/Store";
-import type {State} from "../../../types/State";
 
 type ComponentProps = {
-  products: Array<Product>
+  page: number,
+  count: number,
+  brand: string,
+  products: Array<Product>,
+  onChangePage: Function,
+  onSelect: Function
 };
 
 class ProductGrid extends React.Component<ComponentProps> {
@@ -24,15 +26,4 @@ class ProductGrid extends React.Component<ComponentProps> {
   }
 }
 
-const mapStateToProps = (state: State) => ({
-  products: state.products.list
-});
-
-const mapDispatchToProps = (disptach: Dispatch) => ({
-  // …
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProductGrid);
+export default ProductGrid;

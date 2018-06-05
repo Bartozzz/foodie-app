@@ -1,26 +1,34 @@
 // @flow
 import * as React from "react";
 import {compose} from "recompose";
+import {connect} from "react-redux";
 import {withRouter, Link} from "react-router-dom";
 import {withStyles} from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Search from "../components/Search";
+import {fetchProducts} from "../actions/products";
+import type {Dispatch} from "../types/Store";
+import type {State} from "../types/State";
 
 type ComponentProps = {
   classes: Object,
   children: React.Node,
-  history: Object
+  history: Object,
+  search: Function
 };
 
 class App extends React.Component<ComponentProps> {
-  navigate = location => () => {
-    this.props.history.push(location);
+  onSearch = brand => {
+    const {search, history} = this.props;
+
+    search(brand);
+    history.push("/products");
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, search} = this.props;
 
     return (
       <div className={classes.root}>
@@ -38,7 +46,7 @@ class App extends React.Component<ComponentProps> {
 
             <div className={classes.grow} />
 
-            <Search onSearch={this.navigate("/products")} />
+            <Search onSearch={this.onSearch} />
           </Toolbar>
         </AppBar>
 
@@ -47,6 +55,14 @@ class App extends React.Component<ComponentProps> {
     );
   }
 }
+
+const mapStateToProps = (state: State) => ({
+  // …
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  search: (brand: string) => dispatch(fetchProducts(brand))
+});
 
 export default compose(
   withRouter,
@@ -73,5 +89,9 @@ export default compose(
       overflowX: "hidden",
       overflowY: "auto"
     }
-  }))
+  })),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(App);

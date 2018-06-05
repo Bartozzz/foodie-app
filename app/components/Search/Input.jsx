@@ -2,11 +2,8 @@
 import * as React from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import TextField from "@material-ui/core/TextField";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import {withStyles} from "@material-ui/core/styles";
-import {connect} from "react-redux";
-import {compose} from "recompose";
 
 type Props = {
   value: string,
@@ -120,4 +117,4 @@ class SearchInput extends React.Component<Props> {
   }
 }
 
-export default compose(withStyles(styles))(SearchInput);
+export default withStyles(styles)(SearchInput);
