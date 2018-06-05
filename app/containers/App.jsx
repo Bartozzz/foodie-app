@@ -28,7 +28,7 @@ class App extends React.Component<ComponentProps> {
   };
 
   render() {
-    const {classes, search} = this.props;
+    const {classes} = this.props;
 
     return (
       <div className={classes.root}>

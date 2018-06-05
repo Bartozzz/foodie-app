@@ -4,7 +4,7 @@ import Popover from "@material-ui/core/Popover";
 import Button from "@material-ui/core/Button";
 import {withStyles} from "@material-ui/core/styles";
 
-type Props = {
+type ComponentProps = {
   anchor: Object,
   classes: Object,
   isOpen: boolean,
@@ -48,7 +48,7 @@ const styles = (theme: Object) => ({
   }
 });
 
-class SearchPopover extends React.Component<Props> {
+class SearchPopover extends React.Component<ComponentProps> {
   render() {
     const {isOpen, onClose, onSearch, anchor, classes} = this.props;
 

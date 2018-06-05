@@ -5,7 +5,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import {fade} from "@material-ui/core/styles/colorManipulator";
 import {withStyles} from "@material-ui/core/styles";
 
-type Props = {
+type ComponentProps = {
   value: string,
   classes: Object,
   searchRef: Object,
@@ -85,7 +85,7 @@ const styles = (theme: Object) => ({
   }
 });
 
-class SearchInput extends React.Component<Props> {
+class SearchInput extends React.Component<ComponentProps> {
   onKeyPress = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       this.props.onSearch();

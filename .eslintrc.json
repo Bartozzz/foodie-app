@@ -1,7 +1,14 @@
 {
   "parser": "babel-eslint",
-  "extends": ["prettier", "prettier/react"],
   "plugins": ["flowtype", "import", "prettier", "promise", "react"],
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/flowtype",
+    "prettier/standard",
+    "plugin:react/recommended"
+  ],
 
   "env": {
     "browser": true,
@@ -34,6 +41,7 @@
     "indent": [2, 2, {"SwitchCase": 1}],
 
     "no-console": [0],
+    "no-unused-vars": [1],
     "no-param-reassign": [0],
     "no-multi-assign": [0],
     "no-else-return": [0],
