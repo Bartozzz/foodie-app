@@ -1,36 +1,35 @@
 // @flow
 import * as React from "react";
-import {compose} from "recompose";
 import {withRouter} from "react-router-dom";
-import {withStyles} from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import Error from "../components/Error";
 import CrossImage from "../images/cross.svg";
 
 type ComponentProps = {
   children: React.Node,
-  classes: Object,
   history: Object
 };
 
 type ComponentState = {
-  hasError: boolean
+  hasError: boolean,
+  error: ?Error,
+  info: ?Object
 };
 
 class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
   unlisten: Function;
 
   state = {
-    hasError: false
+    hasError: false,
+    error: null,
+    info: null
   };
 
   componentDidMount() {
     const {history} = this.props;
 
-    this.unlisten = history.listen((location, action) => {
-      this.setState({
-        hasError: false
-      });
-    });
+    // Reset error boundary on route change, e.g. when user click the logo in
+    // order to return to home page:
+    this.unlisten = history.listen(() => this.setState({hasError: false}));
   }
 
   componentWillUnmount() {
@@ -39,55 +38,22 @@ class ErrorBoundary extends React.Component<ComponentProps, ComponentState> {
 
   componentDidCatch(error: Error, info: Object) {
     this.setState({
-      hasError: true
+      hasError: true,
+      error: error,
+      info: info
     });
   }
 
   render() {
-    const {classes, children} = this.props;
+    const {children} = this.props;
     const {hasError} = this.state;
 
     if (hasError) {
-      return (
-        <div className={classes.root}>
-          <div className={classes.container}>
-            <img src={CrossImage} className={classes.image} />
-
-            <Typography color="textSecondary" variant="subheading">
-              Something went wrong!
-            </Typography>
-          </div>
-        </div>
-      );
+      return <Error message="Something went wrong!" image={CrossImage} />;
     }
 
     return children;
   }
 }
 
-export default compose(
-  withRouter,
-  withStyles((theme: Object) => ({
-    root: {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-
-      height: "100%",
-      width: "100%"
-    },
-
-    container: {
-      width: 250,
-      height: 230,
-
-      textAlign: "center"
-    },
-
-    image: {
-      marginBottom: theme.spacing.unit * 2,
-
-      width: 170
-    }
-  }))
-)(ErrorBoundary);
+export default withRouter(ErrorBoundary);
