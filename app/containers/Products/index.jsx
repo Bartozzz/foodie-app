@@ -3,7 +3,9 @@ import * as React from "react";
 import {compose} from "recompose";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import Products from "../../components/Products";
+import Error from "../../components/Error";
+import EmptyImg from "../../images/empty.svg";
+import ProductsView from "../../components/Products";
 import {fetchProducts} from "../../actions/products";
 import {productFetchSuccess} from "../../actions/product";
 import type {Product} from "../../types/off/Product";
@@ -31,7 +33,7 @@ class ProductsPage extends React.Component<ComponentProps> {
     history.push(`/product/${id}`);
   };
 
-  onChangePage = (event, page) => {
+  onChangePage = (e: Object, page: number) => {
     const {changePage, brand} = this.props;
 
     // NOTE pages starts from 1 in API
@@ -40,11 +42,17 @@ class ProductsPage extends React.Component<ComponentProps> {
   };
 
   render() {
+    const {products} = this.props;
+
+    if (!products || products.length === 0) {
+      return <Error message="Products not found!" image={EmptyImg} />;
+    }
+
     return (
-      <Products
+      <ProductsView
+        {...this.props}
         onSelect={this.onSelect}
         onChangePage={this.onChangePage}
-        {...this.props}
       />
     );
   }
