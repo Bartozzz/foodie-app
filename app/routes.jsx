@@ -5,16 +5,26 @@ import amber from "@material-ui/core/colors/amber";
 import lightGreen from "@material-ui/core/colors/lightGreen";
 import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
 import ErrorBoundary from "./containers/Error";
+import {loadable} from "./components/Loader";
 import App from "./containers/App";
-import Home from "./containers/Home";
-import Product from "./containers/Product";
-import Products from "./containers/Products";
 
 const theme = createMuiTheme({
   palette: {
     primary: lightGreen,
     secondary: amber
   }
+});
+
+const AsyncHome = loadable({
+  loader: () => import("./containers/Home")
+});
+
+const AsyncProduct = loadable({
+  loader: () => import("./containers/Product")
+});
+
+const AsyncProducts = loadable({
+  loader: () => import("./containers/Products")
 });
 
 export default () => (
@@ -24,9 +34,9 @@ export default () => (
     <App>
       <ErrorBoundary>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/products" component={Products} />
-          <Route path="/product/:id" component={Product} />
+          <Route path="/" exact component={AsyncHome} />
+          <Route path="/products" component={AsyncProducts} />
+          <Route path="/product/:id" component={AsyncProduct} />
         </Switch>
       </ErrorBoundary>
     </App>
