@@ -160,7 +160,7 @@ export type Product = {
 
   ingredients?: Array<{
     id?: MaybeString,
-    test?: MaybeString,
+    text?: MaybeString,
     rank?: MaybeNumber
   }>,
   ingredients_text?: MaybeString,
