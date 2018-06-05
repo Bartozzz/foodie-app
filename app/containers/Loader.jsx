@@ -2,10 +2,10 @@
 import * as React from "react";
 import {connect} from "react-redux";
 import Loadable from "react-loadable";
-import Spinner from "./Spinner";
-import Retry from "./Retry";
-import type {Dispatch} from "../../types/Store";
-import type {State} from "../../types/State";
+import Spinner from "../components/Loader/Spinner";
+import Retry from "../components/Loader/Retry";
+import type {Dispatch} from "../types/Store";
+import type {State} from "../types/State";
 
 /**
  * Handles loading and error screens.
@@ -15,13 +15,18 @@ import type {State} from "../../types/State";
  * @param   {Error|false} error
  * @param   {Function}    retry
  */
-export default function Loading({isLoading, pastDelay, error, retry}) {
-  if (pastDelay) {
+function Loading(props: {
+  isLoading: boolean,
+  pastDelay: boolean,
+  error: Error | null,
+  retry: Function
+}) {
+  if (props.pastDelay) {
     return <Spinner />;
   }
 
-  if (error) {
-    return <Retry retry={retry} />;
+  if (props.error) {
+    return <Retry retry={props.retry} />;
   }
 
   return null;
@@ -52,7 +57,7 @@ const ConnectedLoading = connect(
  * @param   {Object}    opts
  * @return  {Loadable}
  */
-export const loadable = (opts: Object) =>
+export default (opts: Object) =>
   Loadable({
     loading: Loading,
     delay: 200,

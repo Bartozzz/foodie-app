@@ -5,7 +5,7 @@ import amber from "@material-ui/core/colors/amber";
 import lightGreen from "@material-ui/core/colors/lightGreen";
 import {MuiThemeProvider, createMuiTheme} from "@material-ui/core/styles";
 import ErrorBoundary from "./containers/Error";
-import {loadable} from "./components/Loader";
+import Loader from "./containers/Loader";
 import App from "./containers/App";
 
 const theme = createMuiTheme({
@@ -15,15 +15,15 @@ const theme = createMuiTheme({
   }
 });
 
-const AsyncHome = loadable({
+const AsyncHome = Loader({
   loader: () => import("./containers/Home")
 });
 
-const AsyncProduct = loadable({
+const AsyncProduct = Loader({
   loader: () => import("./containers/Product")
 });
 
-const AsyncProducts = loadable({
+const AsyncProducts = Loader({
   loader: () => import("./containers/Products")
 });
 
