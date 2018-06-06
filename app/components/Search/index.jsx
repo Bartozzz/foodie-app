@@ -34,7 +34,7 @@ class Search extends React.Component<ComponentProps, ComponentState> {
     this.props.onSearch(this.state.brand);
   };
 
-  handleChange = field => (event: Object) => {
+  handleChange = (field: string) => (event: Object) => {
     // NOTE: We cannot prevent default behaviour here:
     // event.preventDefault();
     // event.stopPropagation();

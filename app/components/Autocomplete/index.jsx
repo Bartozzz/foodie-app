@@ -8,7 +8,7 @@ import {withStyles} from "@material-ui/core/styles";
 
 type Suggestion = {
   label: string,
-  value?: string | number
+  [string]: any
 };
 
 /**
@@ -19,7 +19,7 @@ type Suggestion = {
  * @param   {number}            count
  * @return  {Array<Suggestion>}
  */
-function filter(array: Array<Suggestion>, search: string, n: number = 10): * {
+function filter(array: Array<Suggestion>, search: string, n: number = 10) {
   return array.filter((item: Suggestion) => {
     const value: string = search.toLowerCase();
     const label: string = item.label.toLowerCase();
@@ -36,7 +36,7 @@ function filter(array: Array<Suggestion>, search: string, n: number = 10): * {
  * @param       {Object}  props.rest
  * @constructor
  */
-function DownshiftInput({props, ...rest}: Object): * {
+function DownshiftInput({props, ...rest}: Object) {
   return <TextField InputProps={props} {...rest} />;
 }
 
@@ -55,7 +55,7 @@ function DownshiftSuggestion(props: {
   suggestion: Suggestion,
   index: ?number,
   highlightedIndex: ?number
-}): * {
+}) {
   const isSelected = props.highlightedIndex === props.index;
 
   return (
@@ -80,9 +80,8 @@ function DownshiftAutocomplete(props: {
   value: string,
   values: Array<Suggestion>,
   onChange: Object => void
-}): * {
+}) {
   const {classes, value, values, onChange, ...rest} = props;
-
   const imitateEvent: * = (value: string) => ({target: {value}});
   const handleChange: * = (value: string) => onChange(imitateEvent(value));
 
