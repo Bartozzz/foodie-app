@@ -65,9 +65,11 @@ $ npm run <command>
 >**Note:** more commands are available. You can see them all in `package.json`.
 
 <div align="center">
-  <h2>[Screenshots](https://imgur.com/a/LWOxO0s)</h2>
+  <h2>Screenshots</h2>
 
 <img src="https://i.imgur.com/m22HoGn.png" width="250"/>
 <img src="https://i.imgur.com/nLm9PPA.png" width="250"/>
 <img src="https://i.imgur.com/nraf15G.png" width="250"/>
+
+[More on Imgur](https://imgur.com/a/LWOxO0s)
 </div>
