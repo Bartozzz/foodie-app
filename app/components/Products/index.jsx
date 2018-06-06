@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import ProductGrid from "./Grid";
 import ProductList from "./List";
 import ProductTable from "./Table";
 import type {Product} from "../../types/off/Product";
@@ -24,9 +23,6 @@ class Products extends React.Component<ComponentProps, ComponentState> {
   };
 
   render() {
-    switch (this.state.mode) {
-      case "GRID":
-        return <ProductGrid {...this.props} />;
       case "LIST":
         return <ProductList {...this.props} />;
       default:
