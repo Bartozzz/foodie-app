@@ -27,7 +27,7 @@
 
 Foodie was created and developed by [Bartosz Łaniewski](https://github.com/Bartozzz). The full list of contributors can be found [here](https://github.com/Bartozzz/foodie-app/graphs/contributors). Foodie's code is [MIT licensed](https://github.com/Bartozzz/foodie-app/blob/master/LICENSE).  
 
-- We use an Open API – big thanks for [Open Food Facts](https://world.openfoodfacts.org/) for their work.
+- We use an Open API – big thanks to [Open Food Facts](https://world.openfoodfacts.org/) for their work.
 - We use icons made by [Freepik](https://www.freepik.com/) from [FlatIcon](https://www.flaticon.com/) (CC 3.0 BY licensed).
 
 ### Development
