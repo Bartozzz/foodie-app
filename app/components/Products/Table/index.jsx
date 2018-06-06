@@ -26,7 +26,7 @@ class ProductTable extends React.Component<ComponentProps> {
     const {products, page, count, classes, onSelect, onChangePage} = this.props;
 
     return (
-      <div className={classes.root}>
+      <div className={classes.container}>
         <Paper>
           <Table>
             <TableHead>
@@ -69,7 +69,7 @@ class ProductTable extends React.Component<ComponentProps> {
 }
 
 export default withStyles((theme: Object) => ({
-  root: {
+  container: {
     margin: "0 auto",
     padding: theme.spacing.unit * 2,
 

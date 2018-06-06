@@ -25,8 +25,10 @@ const Gallery = ({classes, product}: ComponentsProps) => {
 export default withStyles((theme: Object) => ({
   paper: {
     position: "relative",
+
     height: "100%",
     width: "100%",
+    minHeight: 60,
 
     backgroundColor: "black"
   },
