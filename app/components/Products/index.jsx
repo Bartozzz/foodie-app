@@ -9,6 +9,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import ProductList from "./List";
 import ProductTable from "./Table";
+import ViewModes from "../../constants/viewmodes";
 import type {Product} from "../../types/off/Product";
 
 type ComponentProps = {
@@ -27,7 +28,7 @@ type ComponentState = {
 
 class Products extends React.Component<ComponentProps, ComponentState> {
   state = {
-    mode: "TABLE"
+    mode: ViewModes.VIEW_TABLE
   };
 
   changeMode = (mode: string) => (event: Object) => {
@@ -41,7 +42,7 @@ class Products extends React.Component<ComponentProps, ComponentState> {
     const props = {onSelect, onChangePage, page, count, brand, products};
 
     switch (mode) {
-      case "LIST":
+      case ViewModes.VIEW_LIST:
         return <ProductList {...props} />;
       default:
         return <ProductTable {...props} />;
@@ -62,11 +63,11 @@ class Products extends React.Component<ComponentProps, ComponentState> {
 
             <div className={classes.grow} />
 
-            <IconButton onClick={this.changeMode("LIST")}>
+            <IconButton onClick={this.changeMode(ViewModes.VIEW_TABLE)}>
               <ViewListIcon />
             </IconButton>
 
-            <IconButton onClick={this.changeMode("TABLE")}>
+            <IconButton onClick={this.changeMode(ViewModes.VIEW_LIST)}>
               <ViewModuleIcon />
             </IconButton>
           </Toolbar>
