@@ -7,6 +7,7 @@ import Ingredients from "./Ingredients";
 import Nutriments from "./Nutriments";
 import Etiquette from "./Etiquette";
 import Gallery from "./Gallery";
+import Legal from "./Legal";
 import type {Product} from "../../types/off/Product";
 
 type ComponentProps = {
@@ -39,6 +40,10 @@ class ProductView extends React.Component<ComponentProps> {
 
         <Grid item xs={12}>
           <Etiquette product={product} />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Legal />
         </Grid>
       </Grid>
     );

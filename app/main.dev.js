@@ -10,7 +10,7 @@
  */
 
 import {join} from "path";
-import {app, BrowserWindow} from "electron";
+import {app, BrowserWindow, shell} from "electron";
 import MenuBuilder from "./menu/buildMenu";
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -42,6 +42,13 @@ const createWindow = async () => {
 
   menuBuilder.buildMenu();
   mainWindow.loadURL(`file://${__dirname}/app.html`);
+
+  // Open external links in default browser:
+  mainWindow.webContents.on("new-window", (event, url) => {
+    console.log("new-window");
+    event.preventDefault();
+    shell.openExternal(url);
+  });
 
   mainWindow.on("closed", () => {
     // Dereference the window object, usually you would store windows in an
