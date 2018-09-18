@@ -6,30 +6,32 @@ export const PRODUCTS_FETCH_REQUEST = "PRODUCTS_FETCH_REQUEST";
 export const PRODUCTS_FETCH_SUCCESS = "PRODUCTS_FETCH_SUCCESS";
 export const PRODUCTS_FETCH_FAIL = "PRODUCTS_FETCH_FAIL";
 
-export const productsFetchRequest = (brand: string) => ({
+export const productsFetchRequest = (terms: string) => ({
   type: PRODUCTS_FETCH_REQUEST,
-  brand
+  terms
 });
 
-export const productsFetchSuccess = (brand: string, data: R_Products) => ({
+export const productsFetchSuccess = (terms: string, data: R_Products) => ({
   type: PRODUCTS_FETCH_SUCCESS,
-  brand,
+  terms,
   data
 });
 
-export const productsFetchFail = (brand: string, error: Error) => ({
+export const productsFetchFail = (terms: string, error: Error) => ({
   type: PRODUCTS_FETCH_FAIL,
-  brand,
+  terms,
   error
 });
 
-export const fetchProducts = (brand: string, page: number = 1) => (
+export const fetchProducts = (terms: string, page: number = 1) => (
   dispatch: Dispatch
 ) => {
-  dispatch(productsFetchRequest(brand));
+  dispatch(productsFetchRequest(terms));
 
-  return fetch(`https://world.openfoodfacts.org/brand/${brand}/${page}.json`)
+  return fetch(
+    `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${terms}&page=${page}&json=1`
+  )
     .then(response => response.json())
-    .then((json: R_Products) => dispatch(productsFetchSuccess(brand, json)))
-    .catch((error: Error) => dispatch(productsFetchFail(brand, error)));
+    .then((json: R_Products) => dispatch(productsFetchSuccess(terms, json)))
+    .catch((error: Error) => dispatch(productsFetchFail(terms, error)));
 };

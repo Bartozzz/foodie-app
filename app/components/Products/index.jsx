@@ -15,7 +15,7 @@ import type {Product} from "../../types/off/Product";
 type ComponentProps = {
   classes: Object,
   products: Array<Product>,
-  brand: string,
+  terms: string,
   count: number,
   page: number,
   onChangePage: Function,
@@ -38,8 +38,8 @@ class Products extends React.Component<ComponentProps, ComponentState> {
   };
 
   renderMode(mode: string) {
-    const {onSelect, onChangePage, page, count, brand, products} = this.props;
-    const props = {onSelect, onChangePage, page, count, brand, products};
+    const {onSelect, onChangePage, page, count, terms, products} = this.props;
+    const props = {onSelect, onChangePage, page, count, terms, products};
 
     switch (mode) {
       case ViewModes.VIEW_LIST:

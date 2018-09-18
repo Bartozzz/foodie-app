@@ -12,7 +12,7 @@ export type ProductsState = {
   +count: number,
   +page: number,
   +list: Array<Product>,
-  +brand: string,
+  +terms: string,
   +fetching: boolean
 };
 
@@ -20,7 +20,7 @@ const initialState: ProductsState = {
   count: 0,
   page: 1,
   list: [],
-  brand: "",
+  terms: "",
   fetching: false
 };
 
@@ -36,7 +36,7 @@ export const productsReducer = (
       return {
         ...state,
         fetching: false,
-        brand: action.brand,
+        terms: action.terms,
         count: action.data.count,
         page: Number(action.data.page),
         list: action.data.products

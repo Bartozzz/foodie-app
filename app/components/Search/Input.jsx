@@ -34,7 +34,7 @@ const styles = (theme: Object) => ({
     display: "block",
     verticalAlign: "middle",
 
-    width: 300,
+    width: 340,
 
     padding: `${theme.spacing.unit}px`,
     paddingLeft: `${theme.spacing.unit * 8}px`,
@@ -48,7 +48,7 @@ const styles = (theme: Object) => ({
 
     "&:focus": {
       outline: 0,
-      width: 350
+      width: 380
     },
 
     "&::placeholder": {
@@ -103,7 +103,7 @@ class SearchInput extends React.Component<ComponentProps> {
 
         <input
           value={value}
-          placeholder="Brand name…"
+          placeholder="Brand, product or generic name…"
           className={classes.input}
           onChange={onChange}
           onKeyPress={this.onKeyPress}

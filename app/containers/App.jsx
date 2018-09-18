@@ -20,10 +20,10 @@ type ComponentProps = {
 };
 
 class App extends React.Component<ComponentProps> {
-  onSearch = brand => {
+  onSearch = terms => {
     const {search, history} = this.props;
 
-    search(brand);
+    search(terms);
     history.push("/products");
   };
 
@@ -61,7 +61,7 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  search: (brand: string) => dispatch(fetchProducts(brand))
+  search: (terms: string) => dispatch(fetchProducts(terms))
 });
 
 export default compose(

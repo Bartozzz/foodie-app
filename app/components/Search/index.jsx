@@ -15,7 +15,7 @@ type ComponentProps = {
 
 type ComponentState = {
   isPopoverOpen: boolean,
-  brand: string,
+  terms: string,
   product: string,
   country: string
 };
@@ -25,13 +25,13 @@ class Search extends React.Component<ComponentProps, ComponentState> {
 
   state = {
     isPopoverOpen: false,
-    brand: "",
+    terms: "",
     product: "",
     country: ""
   };
 
   handleSearch = () => {
-    this.props.onSearch(this.state.brand);
+    this.props.onSearch(this.state.terms);
   };
 
   handleChange = (field: string) => (event: Object) => {
@@ -57,15 +57,15 @@ class Search extends React.Component<ComponentProps, ComponentState> {
   };
 
   render() {
-    const {brand, product, country} = this.state;
+    const {terms, product, country} = this.state;
 
     return (
       <React.Fragment>
         <SearchInput
-          value={brand}
+          value={terms}
           searchRef={this.anchor}
           onSearch={this.handleSearch}
-          onChange={this.handleChange("brand")}
+          onChange={this.handleChange("terms")}
           onExpand={this.handlePopoverOpen}
         />
 

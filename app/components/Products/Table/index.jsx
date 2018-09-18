@@ -15,7 +15,7 @@ type ComponentProps = {
   classes: Object,
   page: number,
   count: number,
-  brand: string,
+  terms: string,
   products: Array<Product>,
   onChangePage: Function,
   onSelect: Function

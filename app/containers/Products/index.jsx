@@ -15,7 +15,7 @@ import type {State} from "../../types/State";
 type ComponentProps = {
   history: Object,
   products: Array<Product>,
-  brand: string,
+  terms: string,
   count: number,
   page: number,
   changePage: Function,
@@ -34,11 +34,11 @@ class ProductsPage extends React.Component<ComponentProps> {
   };
 
   onChangePage = (e: Object, page: number) => {
-    const {changePage, brand} = this.props;
+    const {changePage, terms} = this.props;
 
     // NOTE pages starts from 1 in API
     // NOTE pages starts from 0 in components
-    changePage(brand, page + 1);
+    changePage(terms, page + 1);
   };
 
   render() {
@@ -60,14 +60,14 @@ class ProductsPage extends React.Component<ComponentProps> {
 
 const mapStateToProps = (state: State) => ({
   products: state.products.list,
-  brand: state.products.brand,
+  terms: state.products.terms,
   count: state.products.count,
   page: state.products.page
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  changePage(brand, page) {
-    return dispatch(fetchProducts(brand, page));
+  changePage(terms, page) {
+    return dispatch(fetchProducts(terms, page));
   },
 
   fakeFetchProduct(id, product) {
